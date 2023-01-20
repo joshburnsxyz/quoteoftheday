@@ -85,10 +85,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             if (_loading) Text('Loading...'),
             Container(
-                margin: const EdgeInsets.all(10.0),
+                margin: const EdgeInsets.all(22.0),
                 child: Text(
                   '$_quote',
-                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
+                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
                 )),
             Container(
                 margin: const EdgeInsets.all(10.0),

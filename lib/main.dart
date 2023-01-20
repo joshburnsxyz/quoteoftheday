@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 void main() {
   runApp(const MyApp());
@@ -41,11 +43,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _quote = "this is this initial quote";
+  String _author = "someone";
 
-  void newQuote() {
-    setState(() {
-      _quote = "this is the new quote";
-    });
+  Future<http.Response> fetchQuote() async {
+    return http.get(Uri.parse('https://zenquotes.io/api/random/'));
+  }
+
+  void newQuote() async {
+    var res = await fetchQuote();
+    if (res.statusCode == 200) {
+        var body = jsonDecode(res.body);
+        var item = body[0];
+        print(item);
+        setState(() {
+          _quote = item['q'];
+          _author = item['a'];
+        });
+    }
   }
 
 
@@ -61,6 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               '$_quote'
+            ),
+            Text(
+              '$_author'
             ),
           ],
         ),

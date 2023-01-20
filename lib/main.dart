@@ -42,8 +42,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _quote = "this is this initial quote";
-  String _author = "someone";
+  String _quote = "";
+  String _author = "";
 
   Future<http.Response> fetchQuote() async {
     return http.get(Uri.parse('https://zenquotes.io/api/random/'));

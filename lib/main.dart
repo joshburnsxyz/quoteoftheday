@@ -52,16 +52,15 @@ class _MyHomePageState extends State<MyHomePage> {
   void newQuote() async {
     var res = await fetchQuote();
     if (res.statusCode == 200) {
-        var body = jsonDecode(res.body);
-        var item = body[0];
-        print(item);
-        setState(() {
-          _quote = item['q'];
-          _author = item['a'];
-        });
+      var body = jsonDecode(res.body);
+      var item = body[0];
+      print(item);
+      setState(() {
+        _quote = item['q'];
+        _author = item['a'];
+      });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -74,19 +73,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.all(10.0),
-              child: Text(
-                '$_quote',
-                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
-              )
-            ),
+                margin: const EdgeInsets.all(10.0),
+                child: Text(
+                  '$_quote',
+                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
+                )),
             Container(
-              margin: const EdgeInsets.all(10.0),
-              child: Text(
-                '$_author',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
-              )
-            ),
+                margin: const EdgeInsets.all(10.0),
+                child: Text(
+                  '$_author',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                )),
           ],
         ),
       ),

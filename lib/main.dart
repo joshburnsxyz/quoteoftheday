@@ -73,11 +73,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '$_quote'
+            Container(
+              margin: const EdgeInsets.all(10.0),
+              child: Text(
+                '$_quote',
+                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
+              )
             ),
-            Text(
-              '$_author'
+            Container(
+              margin: const EdgeInsets.all(10.0),
+              child: Text(
+                '$_author',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+              )
             ),
           ],
         ),
@@ -85,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: newQuote,
         tooltip: 'New Quote',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.autorenew),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

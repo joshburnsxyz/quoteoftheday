@@ -44,12 +44,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _quote = "";
   String _author = "";
+  bool _loading = false;
 
   Future<http.Response> fetchQuote() async {
     return http.get(Uri.parse('https://zenquotes.io/api/random/'));
   }
 
   void newQuote() async {
+    setState(() => {
+      _loading = true
+    });
     var res = await fetchQuote();
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
@@ -59,7 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
         _quote = item['q'];
         _author = item['a'];
       });
-    }
+    };
+    setState(() => { _loading = false });
   }
 
   @override
@@ -69,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
       newQuote();
     }
 
+    // Build UI
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -77,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            if (_loading) Text('Loading...'),
             Container(
                 margin: const EdgeInsets.all(10.0),
                 child: Text(

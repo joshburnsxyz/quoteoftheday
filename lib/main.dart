@@ -64,6 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Bootstrap a new quote
+    if (_quote == "") {
+      newQuote();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
